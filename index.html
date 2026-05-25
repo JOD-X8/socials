@@ -13,7 +13,7 @@ html,body{width:100%;height:100%;overflow:hidden}
 @media(pointer:fine){*{cursor:none!important;}}
 
 #cur{
-  position:fixed;z-index:99999;pointer-events:none;
+  position:fixed;z-index:10000001;pointer-events:none;
   width:10px;height:10px;border-radius:50%;
   background:#00aaff;
   box-shadow:0 0 10px rgba(0,170,255,0.9),0 0 20px rgba(0,170,255,0.5);
@@ -22,7 +22,7 @@ html,body{width:100%;height:100%;overflow:hidden}
   transition:width .15s,height .15s,background .15s;
 }
 #cur-ring{
-  position:fixed;z-index:99998;pointer-events:none;
+  position:fixed;z-index:10000000;pointer-events:none;
   width:34px;height:34px;border-radius:50%;
   border:1.5px solid rgba(0,170,255,0.45);
   transform:translate(-50%,-50%);
@@ -122,7 +122,7 @@ html,body{width:100%;height:100%;overflow:hidden}
   position:fixed;
   right:22px;
   bottom:22px;
-  z-index:999999;
+  z-index:9999;
   width:52px;
   height:52px;
   border:none;
@@ -132,6 +132,8 @@ html,body{width:100%;height:100%;overflow:hidden}
   font-size:1.25rem;
   cursor:pointer;
   pointer-events:auto;
+  pointer-events:auto;
+  z-index:1000000;
 }
 
 #mute-btn:hover{
@@ -482,10 +484,10 @@ html,body{width:100%;height:100%;overflow:hidden}
 const CFG = {
   discordId: "1135040388357427293",
   typewriterLines: [
-    "18 | Coder | 404",
+    "18 • Coder • Scripter",
     "Limitless.",
-    "Code. Sleep. Repeat.",
-    "Moderation",
+    "Grinding leet code at 3AM.",
+    "Moderation.",
     "different ✦",
   ]
 };
@@ -494,14 +496,20 @@ const CFG = {
 const cur  = document.getElementById('cur');
 const curR = document.getElementById('cur-ring');
 let mx=-100, my=-100, rx=-100, ry=-100;
-document.addEventListener('mousemove', e=>{ mx=e.clientX; my=e.clientY; });
-document.addEventListener('mouseover', e=>{
-  if(e.target.closest('a,button')) document.body.classList.add('cur-big');
-  else document.body.classList.remove('cur-big');
+document.addEventListener('mousemove', e=>{
+  mx=e.clientX;
+  my=e.clientY;
+
+  if(e.target.closest('a,button,#mute-btn')){
+    document.body.classList.add('cur-big');
+  } else {
+    document.body.classList.remove('cur-big');
+  }
 });
 (function rafCursor(){
   cur.style.left=mx+'px'; cur.style.top=my+'px';
-  rx+=(mx-rx)*0.22; ry+=(my-ry)*0.22;
+  rx+=(mx-rx)*0.38;
+  ry+=(my-ry)*0.38;
   curR.style.left=rx+'px'; curR.style.top=ry+'px';
   requestAnimationFrame(rafCursor);
 })();
