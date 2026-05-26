@@ -596,7 +596,7 @@ function applyStatus(status, act, appName, appEmoji){
   const runText=document.getElementById('running-app-text');
   if(runEl){
     if(appName){
-      runIcon.textContent=appEmoji||'🎮';
+      runIcon.textContent=appEmoji;
       runText.textContent=appName;
       runEl.style.display='flex';
     } else {
